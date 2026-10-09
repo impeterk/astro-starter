@@ -1,0 +1,33 @@
+---
+import "@/styles/starwind.css";
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import ThemeSwitcher from "@/lib/scripts/theme-switcher.astro";
+import type { Theme } from "@/lib/types";
+const { title, description } = Astro.props;
+const theme = (Astro.cookies.get("__theme")?.value || "system") as Theme;
+---
+
+<html lang="en" class={theme}>
+  <head>
+    <BaseHead title={title} description={description} />
+    {theme === "system" && <ThemeSwitcher />}
+  </head>
+
+  <body>
+    <Header theme={theme} />
+    <main><slot /></main>
+    <Footer />
+  </body>
+</html>
+<style>
+  html,
+  body {
+    height: 100%;
+  }
+  body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+</style>

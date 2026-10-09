@@ -1,0 +1,41 @@
+---
+import CardParts from "@/components/starwind/card";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE_DESCRIPTION } from "@/lib/consts";
+import CopyButton, {
+  CopyButtonFallback,
+} from "@/components/react/copy-button.tsx";
+import ItemsList from "@/components/items-list.astro";
+---
+
+<BaseLayout title="Starter" description={SITE_DESCRIPTION}>
+  <div class="container space-y-4 py-8">
+    <CardParts.Root class="mx-auto max-w-xl">
+      <CardParts.Header>
+        <CardParts.Title class="text-center text-xl font-semibold">
+          Astro + Shad/CN
+        </CardParts.Title>
+      </CardParts.Header>
+      <CardParts.Content class="space-y-4">
+        <p>
+          Kick-start your Astro projest. Template loaded with only the greatest
+          tools to help you build even faster, then the rest.
+        </p>
+        <p>Run the command to get started</p>
+      </CardParts.Content>
+    </CardParts.Root>
+    <CardParts.Root class="relative mx-auto max-w-xl">
+      <CardParts.Content>
+        <code class="font-mono text-sm font-semibold">
+          npx degit https://github.com/impeterk/astro-shadcn-starter
+        </code>
+        <CopyButton
+          client:only="react"
+          text="npx degit https://github.com/impeterk/astro-shadcn-starter"
+        >
+          <CopyButtonFallback slot="fallback" />
+        </CopyButton>
+      </CardParts.Content>
+    </CardParts.Root>
+  </div>
+</BaseLayout>
