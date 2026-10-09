@@ -38,32 +38,30 @@ const list = [
 ---
 
 <ItemGroup>
-  {
-    list.map((el) => (
-      <Item variant={"outline"}>
-        {el?.icon && (
-          <ItemMedia variant="icon">
-            <Icon name={el.icon} />
-          </ItemMedia>
-        )}
-        <ItemContent>
-          <ItemTitle>{el.title}</ItemTitle>
-        </ItemContent>
-        {el?.link && (
-          <ItemActions>
-            <Button variant={"ghost"} className="px-0">
-              <a
-                href={el.link}
-                target="_blank"
-                rel="nofollow noref"
-                class="inline-flex size-full flex-col justify-center px-2"
-              >
-                <Icon name="tabler:chevron-right" />
-              </a>
-            </Button>
-          </ItemActions>
-        )}
-      </Item>
-    ))
-  }
+  {list.map((el) => (
+    <Item variant={"outline"}>
+      {el?.icon && (
+        <ItemMedia variant="icon">
+          <Icon name={el.icon} />
+        </ItemMedia>
+      )}
+      <ItemContent>
+        <ItemTitle>{el.title}</ItemTitle>
+      </ItemContent>
+      {el?.link && (
+        <ItemActions>
+          <Button variant={"ghost"} className="px-0">
+            <a
+              href={el.link}
+              target="_blank"
+              rel="nofollow noref"
+              class="inline-flex size-full flex-col justify-center px-2"
+            >
+              <Icon name="tabler:chevron-right" />
+            </a>
+          </Button>
+        </ItemActions>
+      )}
+    </Item>
+  ))}
 </ItemGroup>

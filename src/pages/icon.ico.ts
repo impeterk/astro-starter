@@ -1,10 +1,10 @@
 import Favicon from "@/components/favicon";
-import { ImageResponse } from "@vercel/og";
+import ImageResponse from "takumi-js/response";
 export const size = {
   width: 32,
   height: 32,
 };
 export async function GET() {
   // Typescript hax
-  return new ImageResponse(Favicon(), { ...size });
+  return new ImageResponse(Favicon(), { ...size, format: "ico" });
 }

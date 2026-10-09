@@ -1,7 +1,7 @@
 import Favicon from "@/components/favicon";
 import OgImage from "@/components/og-image";
 import { BRAND_NAME, SITE_TITLE } from "@/lib/consts";
-import { ImageResponse } from "@vercel/og";
+import ImageResponse from "takumi-js/response";
 export const size = {
   width: 1200,
   height: 630,

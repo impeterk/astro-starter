@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, type JSX } from "react";
 
 import { motion } from "motion/react";
 import { useMediaQuery } from "@reactuses/core";
+import { IconDeviceDesktop, IconMoon, IconSun } from "@tabler/icons-react";
 
 import { cn } from "@/lib/utils";
 import type { Theme } from "@/lib/types";
@@ -15,7 +16,7 @@ function ThemeOption({
   isActive,
   onClick = defFunc,
 }: {
-  icon: string;
+  icon: JSX.Element;
   value: string;
   isActive?: boolean;
   onClick?: (value: Theme) => void;
@@ -32,8 +33,7 @@ function ThemeOption({
       type="button"
       onClick={() => onClick(value as Theme)}
     >
-      <span className={icon} />
-
+      {icon}
       {isActive && (
         <motion.div
           className="border-primary absolute inset-0 rounded-full border"
@@ -47,15 +47,15 @@ function ThemeOption({
 
 const THEME_OPTIONS = [
   {
-    icon: "icon-[tabler--device-desktop]",
+    icon: <IconDeviceDesktop />,
     value: "system",
   },
   {
-    icon: "icon-[tabler--sun]",
+    icon: <IconSun />,
     value: "light",
   },
   {
-    icon: "icon-[tabler--moon]",
+    icon: <IconMoon />,
     value: "dark",
   },
 ];
