@@ -1,6 +1,43 @@
 ---
 import Sidebar from "./starwind/sidebar";
 import { Logo } from "./favicon";
+import {
+  IconArticle,
+  IconBrandGithub,
+  IconBroadcast,
+  IconCode,
+  IconEmailStamp,
+  IconHome,
+  IconMail,
+  IconUser,
+} from "@tabler/icons-react";
+
+const { pathname } = Astro.url;
+
+const paths = [
+  [
+    {
+      href: "/",
+      label: "Home",
+      icon: IconHome,
+    },
+    {
+      href: "/posts",
+      label: "Articles",
+      icon: IconArticle,
+    },
+    {
+      href: "/project",
+      label: "Projects",
+      icon: IconCode,
+    },
+  ],
+  [
+    { href: "/about", label: "About me", icon: IconUser },
+    { href: "/now", label: "Now", icon: IconBroadcast },
+    { href: "/contact", label: "Get in touch", icon: IconMail},
+  ],
+];
 ---
 
 <Sidebar.Root>
@@ -24,13 +61,39 @@ import { Logo } from "./favicon";
     </Sidebar.Header>
 
     <Sidebar.Content>
-      <Sidebar.Group>
-        <Sidebar.GroupLabel>Navigation</Sidebar.GroupLabel>
-        <Sidebar.GroupContent>
-          <Sidebar.Menu></Sidebar.Menu>
-        </Sidebar.GroupContent>
-      </Sidebar.Group>
+      {paths.map((menu, idx) => (
+        <Sidebar.Group>
+          {idx == 0 && <Sidebar.GroupLabel>Navigation</Sidebar.GroupLabel>}
+          <Sidebar.GroupContent>
+            <Sidebar.Menu>
+              {menu.map((Item) => (
+                <Sidebar.MenuItem>
+                  <Sidebar.MenuButton
+                    href={Item.href}
+                    isActive={pathname === Item.href}
+                  >
+                    <Item.icon /> {Item.label}
+                  </Sidebar.MenuButton>
+                </Sidebar.MenuItem>
+              ))}
+            </Sidebar.Menu>
+          </Sidebar.GroupContent>
+        </Sidebar.Group>
+      ))}
     </Sidebar.Content>
+
+    <Sidebar.Footer>
+      <Sidebar.Group>
+      <Sidebar.GroupLabel>Socials</Sidebar.GroupLabel>
+      <Sidebar.Menu class="grid grid-cols-3">
+        <Sidebar.MenuItem >
+          <Sidebar.MenuButton class="justify-center">
+            <IconBrandGithub />
+          </Sidebar.MenuButton>
+        </Sidebar.MenuItem>
+      </Sidebar.Menu>
+      </Sidebar.Group>
+    </Sidebar.Footer>
   </Sidebar.Sidebar>
   <slot />
 </Sidebar.Root>
