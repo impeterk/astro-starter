@@ -15,7 +15,8 @@ const theme = (Astro.cookies.get("__theme")?.value || "system") as Theme;
     {theme === "system" && <ThemeSwitcher />}
   </head>
 
-  <body class="container">
+  <body >
+    <div class="container">
     <AppSidebar>
       <div class="sm:rounded-xl sm:border sm:border-sidebar-border my-2 w-full grid grid-rows-[1fr_auto]">
         <main>
@@ -24,6 +25,7 @@ const theme = (Astro.cookies.get("__theme")?.value || "system") as Theme;
         <Footer />
       </div>
     </AppSidebar>
+    </div>
   </body>
 </html>
 <style>

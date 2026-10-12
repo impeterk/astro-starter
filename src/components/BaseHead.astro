@@ -55,6 +55,6 @@ const { title, description, image = "/og-image.png" } = Astro.props;
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 <!-- Client Router - View Transitions -->
-<ClientRouter transition:animate="none" />
+<ClientRouter />
 <!-- Loading Indicator -->
 <LoadingIndicator />

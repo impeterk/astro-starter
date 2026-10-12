@@ -6,11 +6,11 @@ import {
   IconBrandGithub,
   IconBroadcast,
   IconCode,
-  IconEmailStamp,
   IconHome,
   IconMail,
   IconUser,
 } from "@tabler/icons-react";
+import { fade } from "astro:transitions";
 
 const { pathname } = Astro.url;
 
@@ -27,15 +27,15 @@ const paths = [
       icon: IconArticle,
     },
     {
-      href: "/project",
-      label: "Projects",
+      href: "/projects",
+      label: "Work",
       icon: IconCode,
     },
   ],
   [
     { href: "/about", label: "About me", icon: IconUser },
     { href: "/now", label: "Now", icon: IconBroadcast },
-    { href: "/contact", label: "Get in touch", icon: IconMail},
+    { href: "/contact", label: "Get in touch", icon: IconMail },
   ],
 ];
 ---
@@ -66,16 +66,28 @@ const paths = [
           {idx == 0 && <Sidebar.GroupLabel>Navigation</Sidebar.GroupLabel>}
           <Sidebar.GroupContent>
             <Sidebar.Menu>
-              {menu.map((Item) => (
-                <Sidebar.MenuItem>
-                  <Sidebar.MenuButton
-                    href={Item.href}
-                    isActive={pathname === Item.href}
-                  >
-                    <Item.icon /> {Item.label}
-                  </Sidebar.MenuButton>
-                </Sidebar.MenuItem>
-              ))}
+              {menu.map((Item) => {
+                const isActive = pathname === Item.href;
+                return (
+                  <>
+                    <Sidebar.MenuItem class="relative ">
+                      <Sidebar.MenuButton
+                        class="relative z-10"
+                        href={Item.href}
+                        isActive={isActive}
+                      >
+                        <Item.icon /> {Item.label}
+                      </Sidebar.MenuButton>
+                    {isActive && (
+                      <div
+                        transition:name={"active-nav-btn"}
+                        class="absolute top-0 left-0 rounded-lg bg-sidebar-accent/50 w-full h-full z-0"
+                      />
+                    )}
+                    </Sidebar.MenuItem>
+                  </>
+                );
+              })}
             </Sidebar.Menu>
           </Sidebar.GroupContent>
         </Sidebar.Group>
@@ -84,14 +96,14 @@ const paths = [
 
     <Sidebar.Footer>
       <Sidebar.Group>
-      <Sidebar.GroupLabel>Socials</Sidebar.GroupLabel>
-      <Sidebar.Menu class="grid grid-cols-3">
-        <Sidebar.MenuItem >
-          <Sidebar.MenuButton class="justify-center">
-            <IconBrandGithub />
-          </Sidebar.MenuButton>
-        </Sidebar.MenuItem>
-      </Sidebar.Menu>
+        <Sidebar.GroupLabel>Socials</Sidebar.GroupLabel>
+        <Sidebar.Menu class="grid grid-cols-3">
+          <Sidebar.MenuItem>
+            <Sidebar.MenuButton class="justify-center">
+              <IconBrandGithub />
+            </Sidebar.MenuButton>
+          </Sidebar.MenuItem>
+        </Sidebar.Menu>
       </Sidebar.Group>
     </Sidebar.Footer>
   </Sidebar.Sidebar>
