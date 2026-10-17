@@ -1,4 +1,5 @@
 ---
+import { Logo } from "@/components/favicon";
 import CardParts from "@/components/starwind/card";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { SITE_DESCRIPTION } from "@/lib/consts";
@@ -13,6 +14,12 @@ import { SITE_DESCRIPTION } from "@/lib/consts";
         </CardParts.Title>
       </CardParts.Header>
       <CardParts.Content class="space-y-4">
+        <div transition:name="logo">
+          <div class="size-10">
+            <Logo size="size-9" />
+          </div>
+          peterk.dev
+        </div>
         <p>
           Kick-start your Astro projest. Template loaded with only the greatest
           tools to help you build even faster, then the rest.

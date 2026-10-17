@@ -1,54 +1,76 @@
 ---
-import { SITE_TITLE } from "@/lib/consts";
 import { Button } from "./starwind/button";
+import { ButtonGroup } from "./starwind/button-group";
 import { ThemeSwitcher } from "./react/theme-switch";
-import { cn } from "@/lib/utils";
-import { auth } from "@/lib/auth";
+import { Logo } from "./favicon";
 const { theme } = Astro.props;
 
-// const session = await auth.api.getSession({
-//   headers: Astro.request.headers,
-// });
 const { pathname } = Astro.url;
-const authIcon = false ? "tabler:lock-open-2" : "tabler:lock";
 
 const navLinks = [
-  { href: "/", label: "Home", icon: "tabler:home" },
-  { href: "/drizzle", label: "Drizzle", icon: "drizzle" },
-  { href: "/auth", label: "Auth", icon: authIcon },
+  // {
+  //   href: "/",
+  //   label: "Home",
+  // },
+  {
+    href: "/blog",
+    label: "Blog",
+  },
+  {
+    href: "/work",
+    label: "Work",
+  },
+  { href: "/about", label: "About" },
+  { href: "/now", label: "Now" },
 ];
 ---
 
-<header class="border-b">
-  <nav class="container mx-auto flex items-center py-4">
-    <Button variant={"link"} href="/">
-      {SITE_TITLE}
-    </Button>
-    <ul class="ml-auto inline-flex gap-2" transition:name="nav-bar">
+<header class="border-b container">
+  <nav class="grid grid-cols-3 items-center py-4">
+    <div>
+      {pathname !== "/" && (
+        <Button
+          transition:name="logo"
+          variant={"ghost"}
+          class="text-foreground"
+          href="/"
+        >
+          <div class="-ml-2">
+            <Logo size="size-8" />
+          </div>
+          peterk.dev
+        </Button>
+      )}
+    </div>
+    <ButtonGroup
+      as="ul"
+      class:list={[
+        "bg-secondary/50 justify-self-center rounded-lg overflow-hidden",
+      ]}
+    >
       {navLinks.map((link) => {
         const active = link.href === pathname;
         return (
-          <li class="group relative">
-            <a
-              aria-current={active && "page"}
-              href={link.href}
-              class={cn(
-                "text-foreground inline-flex items-center justify-center gap-2 px-2 py-2 font-medium",
-              )}
-            >
-              {link.label}
-            </a>
+          <Button
+            variant="link"
+            class:list={[
+              "text-foreground hover:no-underline border-b-2 border-b-transparent  hover:border-primary rounded-b-none relative",
+              active && "border-b-2 border-primary",
+            ]}
+            href={link.href}
+          >
+            {link.label}
             {active && (
               <div
                 transition:name={`active-indicator`}
-                class={cn("bg-accent absolute bottom-0 left-0 h-0.5 w-full")}
+                class={"bg-primary absolute -bottom-0.5 left-0 h-0.5 inset-x-0"}
               />
             )}
-          </li>
+          </Button>
         );
       })}
-    </ul>
-    <div class="ml-auto">
+    </ButtonGroup>
+    <div class="flex gap-2 items-center ml-auto">
       <ThemeSwitcher client:load transition:persist active={theme} />
     </div>
   </nav>

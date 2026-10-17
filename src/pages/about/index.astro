@@ -1,0 +1,74 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Card from "@/components/starwind/card";
+import image from "@/assets/AboutMe.webp";
+import { Image } from "@/components/starwind/image";
+import { Badge } from "@/components/starwind/badge";
+import { Prose } from "@/components/starwind/prose";
+import { ButtonGroup } from "@/components/starwind/button-group";
+import {
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconFileTypePdf,
+} from "@tabler/icons-react";
+import { Button } from "@/components/starwind/button";
+
+const links = [
+  {
+    href: "https://github.com/impeterk",
+    label: "Github",
+    icon: IconBrandGithub,
+  },
+  {
+    href: "https://linkedin.com/in/impeterk",
+    label: "LinkedIn",
+    icon: IconBrandLinkedin,
+  },
+  { href: "#", label: "Resume", icon: IconFileTypePdf },
+];
+---
+
+<BaseLayout title="About">
+  <section class="container">
+    <Card.Root class="w-full max-w-2xl mx-auto mt-12 pt-0 overflow-clip">
+      <Card.Header class="p-0 bg-secondary-accent dark:bg-sidebar relative max-h-72">
+        <Image
+          src={image}
+          alt="A bird sitting on a nest of eggs."
+          class="max-h-72 w-fit mx-auto"
+        />
+        <div class="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 p-6 @xl:p-8">
+          <Badge class="mb-4" tone="primary-accent" appearance="soft">
+            Human
+          </Badge>
+          <Card.Title class="font-bold text-2xl text-white">
+            Peter Kudelas
+          </Card.Title>
+          <Card.Description class="text-white/80">
+            Full-stack developer
+          </Card.Description>
+        </div>
+      </Card.Header>
+      <Card.Content class="px-8 pt-4">
+        <section>
+          <Prose>
+            <p class="text-pretty">
+              I develop feature rich, human first, enterprise grade applications
+              for business partners. Currently focused on desktop-first electron
+              based application to streamline email template design for teams.
+            </p>
+          </Prose>
+        </section>
+        <ButtonGroup class="mt-4 gap-2">
+          {links.map((link) => (
+            <Button href={link.href} target="_blank" size="sm" variant="ghost">
+              <link.icon />
+              {link.label}
+            </Button>
+          ))}
+        </ButtonGroup>
+      </Card.Content>
+    </Card.Root>
+  </section>
+</BaseLayout>

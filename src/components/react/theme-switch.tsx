@@ -1,6 +1,5 @@
 import { useState, type JSX } from "react";
 
-import { motion } from "motion/react";
 import { useMediaQuery } from "@reactuses/core";
 import { IconDeviceDesktop, IconMoon, IconSun } from "@tabler/icons-react";
 
@@ -27,20 +26,12 @@ function ThemeOption({
       aria-label={`Switch to ${value} theme`}
       className={cn(
         "relative flex size-8 cursor-default items-center justify-center rounded-full transition-all [&_svg]:size-4",
-        isActive ? "bg-muted text-primary" : "text-foreground hover:bg-muted",
       )}
       role="radio"
       type="button"
       onClick={() => onClick(value as Theme)}
     >
       {icon}
-      {isActive && (
-        <motion.div
-          className="border-primary absolute inset-0 rounded-full border"
-          layoutId="theme-option"
-          transition={{ type: "keyframes", duration: 0.3 }}
-        />
-      )}
     </button>
   );
 }
@@ -73,10 +64,11 @@ function ThemeSwitcher({ active = "system" }: { active?: Theme }) {
     }
     document.documentElement.className = theme;
   }
+  const pos_left = `${THEME_OPTIONS.findIndex((t) => t.value === theme) * 2}rem`;
 
   return (
     <div
-      className="bg-background ring-muted inline-flex items-center overflow-hidden rounded-full ring-1"
+      className="bg-muted ring-secondary relative inline-flex h-min items-center rounded-full ring-1"
       role="radiogroup"
     >
       {THEME_OPTIONS.map((option) => (
@@ -88,6 +80,13 @@ function ThemeSwitcher({ active = "system" }: { active?: Theme }) {
           onClick={handleClick}
         />
       ))}
+
+      <div
+        className={cn(
+          "border-foreground dark:border-primary absolute size-8 rounded-full border transition-all",
+        )}
+        style={{ left: pos_left }}
+      />
     </div>
   );
 }

@@ -1,10 +1,9 @@
 ---
-import "@/styles/starwind.css";
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import ThemeSwitcher from "@/lib/scripts/theme-switcher.astro";
 import type { Theme } from "@/lib/types";
-import AppSidebar from "@/components/app-sidebar.astro";
+import Header from "@/components/Header.astro";
 const { title, description } = Astro.props;
 const theme = (Astro.cookies.get("__theme")?.value || "system") as Theme;
 ---
@@ -15,17 +14,12 @@ const theme = (Astro.cookies.get("__theme")?.value || "system") as Theme;
     {theme === "system" && <ThemeSwitcher />}
   </head>
 
-  <body >
-    <div class="container">
-    <AppSidebar>
-      <div class="sm:rounded-xl sm:border sm:border-sidebar-border my-2 w-full grid grid-rows-[1fr_auto]">
-        <main>
-          <slot />
-        </main>
-        <Footer />
-      </div>
-    </AppSidebar>
-    </div>
+  <body class="lg:grid grid-rows-[auto_1fr_auto]">
+    <Header {theme} />
+    <main class="container">
+      <slot />
+    </main>
+    <Footer />
   </body>
 </html>
 <style>

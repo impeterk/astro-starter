@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import type { VariantProps } from "tailwind-variants";
+
+import { buttonGroup } from "./variants";
+
+type Props = HTMLAttributes<any> & VariantProps<typeof buttonGroup>;
+
+const {
+  orientation = "horizontal",
+  as = "div",
+  class: className,
+  ...rest
+} = Astro.props;
+
+const Component = as;
+---
+
+<Component
+  role="group"
+  data-orientation={orientation}
+  class={buttonGroup({ orientation, class: className })}
+  {...rest}
+  data-slot="button-group"
+>
+  <slot />
+</Component>

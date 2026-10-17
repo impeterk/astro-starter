@@ -8,11 +8,12 @@ import react from "@astrojs/react";
 
 import tailwindcss from "@tailwindcss/vite";
 
-import vercel from "@astrojs/vercel";
+import node from "@astrojs/node";
 
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,
+
   fonts: [
     {
       provider: fontProviders.npm({ remote: false }),
@@ -20,16 +21,25 @@ export default defineConfig({
       cssVariable: "--font-geist-mono",
     },
   ],
+
   integrations: [mdx(), sitemap(), react()],
+
   server: {
     port: PORT,
   },
+
   vite: {
+    resolve: { tsconfigPaths: true },
     plugins: [tailwindcss()],
   },
+
   output: "server",
-  adapter: vercel(),
+
   prefetch: {
     defaultStrategy: "hover",
   },
+
+  adapter: node({
+    mode: "standalone",
+  }),
 });
