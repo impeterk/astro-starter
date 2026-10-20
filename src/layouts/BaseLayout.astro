@@ -16,7 +16,7 @@ const theme = (Astro.cookies.get("__theme")?.value || "system") as Theme;
 
   <body class="lg:grid grid-rows-[auto_1fr_auto]">
     <Header {theme} />
-    <main class="container">
+    <main class="container" transition:name="body">
       <slot />
     </main>
     <Footer />

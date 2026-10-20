@@ -1,7 +1,7 @@
 // @ts-check
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import { defineConfig, fontProviders } from "astro/config";
+import { defineConfig, fontProviders, memoryCache } from "astro/config";
 import { SITE_URL, PORT } from "./src/lib/consts";
 
 import react from "@astrojs/react";
@@ -42,4 +42,7 @@ export default defineConfig({
   adapter: node({
     mode: "standalone",
   }),
+  cache: {
+    provider: memoryCache(),
+  },
 });

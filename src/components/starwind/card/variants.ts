@@ -7,12 +7,17 @@ export const card = tv({
     "*:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl",
   ],
   variants: {
+    variant: {
+      default: "",
+      ghost: "ring-0 bg-background",
+    },
     size: {
       sm: "[--card-spacing:--spacing(4)] text-sm",
       md: "[--card-spacing:--spacing(5)]",
     },
   },
   defaultVariants: {
+    variant: "default",
     size: "md",
   },
 });

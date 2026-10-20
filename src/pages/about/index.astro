@@ -1,4 +1,5 @@
 ---
+// TODO: Add content, render with comark
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Card from "@/components/starwind/card";
 import image from "@/assets/AboutMe.webp";
@@ -12,6 +13,8 @@ import {
   IconFileTypePdf,
 } from "@tabler/icons-react";
 import { Button } from "@/components/starwind/button";
+import Separator from "@/components/starwind/separator";
+import { Content } from "./_content.md";
 
 const links = [
   {
@@ -36,6 +39,7 @@ const links = [
           src={image}
           alt="A bird sitting on a nest of eggs."
           class="max-h-72 w-fit mx-auto"
+          loading={"eager"}
         />
         <div class="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent"></div>
         <div class="absolute inset-x-0 bottom-0 p-6 @xl:p-8">
@@ -51,23 +55,37 @@ const links = [
         </div>
       </Card.Header>
       <Card.Content class="px-8 pt-4">
-        <section>
-          <Prose>
-            <p class="text-pretty">
-              I develop feature rich, human first, enterprise grade applications
-              for business partners. Currently focused on desktop-first electron
-              based application to streamline email template design for teams.
-            </p>
-          </Prose>
-        </section>
-        <ButtonGroup class="mt-4 gap-2">
-          {links.map((link) => (
-            <Button href={link.href} target="_blank" size="sm" variant="ghost">
-              <link.icon />
-              {link.label}
-            </Button>
-          ))}
-        </ButtonGroup>
+        <article>
+          <section>
+            <Prose>
+              <p class="text-pretty">
+                I develop feature rich, human first, enterprise grade
+                applications for business partners. Currently focused on
+                desktop-first electron based application to streamline email
+                template design for teams.
+              </p>
+            </Prose>
+          </section>
+          <ButtonGroup class="mt-4 gap-2">
+            {links.map((link) => (
+              <Button
+                href={link.href}
+                target="_blank"
+                size="sm"
+                variant="ghost"
+              >
+                <link.icon />
+                {link.label}
+              </Button>
+            ))}
+          </ButtonGroup>
+          <Separator class="mt-4 mb-8" />
+          <section>
+            <Prose>
+              <Content />
+            </Prose>
+          </section>
+        </article>
       </Card.Content>
     </Card.Root>
   </section>

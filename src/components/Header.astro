@@ -25,22 +25,19 @@ const navLinks = [
 ];
 ---
 
-<header class="border-b container">
+<header class="border-b container sticky top-0 bg-background z-10">
   <nav class="grid grid-cols-3 items-center py-4">
-    <div>
-      {pathname !== "/" && (
-        <Button
-          transition:name="logo"
-          variant={"ghost"}
-          class="text-foreground"
-          href="/"
-        >
-          <div class="-ml-2">
-            <Logo size="size-8" />
-          </div>
-          peterk.dev
-        </Button>
-      )}
+    <div class="relative overflow-hidden">
+      <Button
+        variant={"ghost"}
+        class:list={["text-foreground", { "translate-y-16": pathname === "/" }]}
+        href="/"
+      >
+        <div class="-ml-2">
+          <Logo size="size-8" />
+        </div>
+        peterk.dev
+      </Button>
     </div>
     <ButtonGroup
       as="ul"

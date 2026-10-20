@@ -1,7 +1,12 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import GithubContributions from "@/components/gh.astro";
+Astro.cache.set({
+  maxAge: 60 * 24,
+  tags: ["now"],
+});
 ---
 
 <BaseLayout title="Now">
-  <section>Hello</section>
+  <GithubContributions server:defer />
 </BaseLayout>

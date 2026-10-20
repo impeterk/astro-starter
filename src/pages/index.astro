@@ -1,31 +1,182 @@
 ---
 import { Logo } from "@/components/favicon";
+import Badge from "@/components/starwind/badge";
+import { Button } from "@/components/starwind/button";
 import CardParts from "@/components/starwind/card";
+import Prose from "@/components/starwind/prose";
+import Separator from "@/components/starwind/separator";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { SITE_DESCRIPTION } from "@/lib/consts";
+import { IconArrowRight } from "@tabler/icons-react";
+import blogPlaceholder from "@/assets/blog-placeholder-1.jpg";
+import Image from "@/components/starwind/image";
 ---
 
 <BaseLayout title="Starter" description={SITE_DESCRIPTION}>
-  <div class="container space-y-4 py-8">
-    <CardParts.Root class="mx-auto max-w-xl">
+  <section class="space-y-20 mt-12">
+    <CardParts.Root variant="ghost">
       <CardParts.Header>
-        <CardParts.Title class="text-center text-xl font-semibold">
-          Astro + Shad/CN
-        </CardParts.Title>
-      </CardParts.Header>
-      <CardParts.Content class="space-y-4">
-        <div transition:name="logo">
-          <div class="size-10">
-            <Logo size="size-9" />
+        <div>
+          <div class="size-24">
+            <Logo size="size-full" />
           </div>
-          peterk.dev
+          <CardParts.Title class="text-3xl font-semibold w-fit mb-4 pb-4 border-b">
+            <h1>Hi, I'm Peter</h1>
+          </CardParts.Title>
         </div>
-        <p>
-          Kick-start your Astro projest. Template loaded with only the greatest
-          tools to help you build even faster, then the rest.
-        </p>
-        <p>Run the command to get started</p>
+      </CardParts.Header>
+      <CardParts.Content>
+        <Prose class="text-pretty">
+          <p>
+            Full stack web-developer with focus on human first applications
+            during the week. On weekends shreding trails on my mountain bike.
+            Burned by react, healed by svelte. Now working towards my masters
+            degree in IT and Networks Management.
+          </p>
+        </Prose>
       </CardParts.Content>
     </CardParts.Root>
-  </div>
+
+    <CardParts.Root variant="ghost">
+      <CardParts.Header>
+        <CardParts.Title>
+          <Button
+            href="/work"
+            variant="link"
+            class="text-3xl text-foreground px-0"
+          >
+            <h2 transition:name="work-heading">Latest work</h2>
+          </Button>
+        </CardParts.Title>
+      </CardParts.Header>
+      <CardParts.Content>
+        <section>
+          <CardParts.Root as="article">
+            <CardParts.Header>
+              <div class="flex items-center gap-2">
+                <Badge tone="neutral" appearance="soft" size="sm">
+                  Vue.js
+                </Badge>
+                <Badge tone="neutral" appearance="soft" size="sm">
+                  typescript
+                </Badge>
+                <Separator orientation="vertical" class="h-6 mx-1" />
+                <Badge tone="success" eyebrow size="sm" appearance="solid">
+                  In Production
+                </Badge>
+                <Separator orientation="vertical" class="h-6 mx-1" />
+
+                <Badge size="sm" appearance="text">
+                  8 min read
+                </Badge>
+              </div>
+              <CardParts.Title>
+                <Button
+                  href="/work/#"
+                  variant="link-default"
+                  class="px-0 text-2xl"
+                >
+                  <h3>Check My Ticket</h3>
+                </Button>
+              </CardParts.Title>
+            </CardParts.Header>
+            <CardParts.Content>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae,
+              assumenda earum? Expedita explicabo cupiditate omnis vel nulla
+              vitae nam sequi, iste possimus quaerat distinctio, commodi vero
+              ipsa fuga velit temporibus.
+            </CardParts.Content>
+            <CardParts.Footer class="bg-card border-t-0 pt-0">
+              <Button
+                href="/work/#"
+                variant="link-default"
+                class="ml-auto hover:no-underline hover:border-b border-b-foreground rounded-b-none"
+              >
+                Read Mode <IconArrowRight />
+              </Button>
+            </CardParts.Footer>
+          </CardParts.Root>
+        </section>
+      </CardParts.Content>
+    </CardParts.Root>
+
+    <CardParts.Root variant="ghost">
+      <CardParts.Header>
+        <CardParts.Title>
+          <Button href="/blog" variant="link-default" class="text-3xl px-0">
+            <h2 transition:name="work-blog">Latest articles</h2>
+          </Button>
+        </CardParts.Title>
+        <CardParts.Description>
+          Insights, thoughts and stories from my corner of the tech world
+        </CardParts.Description>
+      </CardParts.Header>
+      <CardParts.Content class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6">
+        <CardParts.Root
+          as="article"
+          class="w-full max-w-sx md:max-w-sm group relative isolate block hover:outline"
+        >
+          <Image
+            src={blogPlaceholder}
+            class="aspect-video w-full object-cover"
+          />
+          <a href="/blog/#" class="absolute inset-0 z-1">
+            <span class="sr-only">title</span>
+          </a>
+          <CardParts.Header class="pt-4">
+            <CardParts.Title>The Zero JS Situation</CardParts.Title>
+            <CardParts.Description class="mt-6 text-balance">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae,
+              assumenda earum? Expedita explicabo cupiditate omnis vel nulla
+            </CardParts.Description>
+          </CardParts.Header>
+        </CardParts.Root>
+
+        <CardParts.Root
+          as="article"
+          class="w-full max-w-sm group relative isolate block hover:outline"
+        >
+          <Image
+            src={blogPlaceholder}
+            class="aspect-video w-full object-cover"
+          />
+          <a href="/blog/#" class="absolute inset-0 z-1">
+            <span class="sr-only">title</span>
+          </a>
+          <CardParts.Header class="pt-4">
+            <CardParts.Title>The Zero JS Situation</CardParts.Title>
+            <CardParts.Description class="mt-6 text-balance">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae,
+              assumenda earum? Expedita explicabo cupiditate omnis vel nulla
+            </CardParts.Description>
+          </CardParts.Header>
+        </CardParts.Root>
+
+        <CardParts.Root
+          as="article"
+          class="w-full max-w-sm group relative isolate block hover:outline"
+        >
+          <Image
+            src={blogPlaceholder}
+            class="aspect-video w-full object-cover"
+          />
+          <a href="/blog/#" class="absolute inset-0 z-1">
+            <span class="sr-only">title</span>
+          </a>
+          <CardParts.Header class="pt-4">
+            <CardParts.Title>The Zero JS Situation</CardParts.Title>
+            <CardParts.Description class="mt-6 text-balance">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae,
+              assumenda earum? Expedita explicabo cupiditate omnis vel nulla
+            </CardParts.Description>
+          </CardParts.Header>
+        </CardParts.Root>
+      </CardParts.Content>
+      <CardParts.Footer class="bg-background border-t-0">
+        <Button variant="ghost" href="/blog" class="ml-auto">
+          All articles
+        </Button>
+      </CardParts.Footer>
+    </CardParts.Root>
+  </section>
 </BaseLayout>

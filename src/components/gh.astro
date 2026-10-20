@@ -1,0 +1,38 @@
+---
+const res = await fetch(
+  "https://git.peterk.dev/api/gh?user=impeterk&year=2026",
+);
+const { contributions } = await res.json();
+
+function getColor(level: number) {
+  switch (level) {
+    case 0:
+      return "bg-secondary";
+    case 1:
+      return "bg-primary/40";
+    case 2:
+      return "bg-primary/60";
+    case 3:
+      return "bg-primary/80";
+    case 4:
+      return "bg-primary";
+    default:
+      return "bg-background";
+  }
+}
+---
+
+<section class="w-fit">
+  {contributions.map((row) => (
+    <div class="flex gap-1 not-last:mb-1">
+      {row.map((day) => (
+        <div class="relative bg-muted size-3">
+          <div
+            class:list={["size-full absolute inset-0", getColor(day?.level)]}
+            title={day?.count}
+          ></div>
+        </div>
+      ))}
+    </div>
+  ))}
+</section>

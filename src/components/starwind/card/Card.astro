@@ -4,17 +4,25 @@ import type { VariantProps } from "tailwind-variants";
 
 import { card } from "./variants";
 
-type Props = HTMLAttributes<"div"> & VariantProps<typeof card>;
+type Props = HTMLAttributes<any> & VariantProps<typeof card>;
 
-const { size = "md", class: className, ...rest } = Astro.props;
+const {
+  size = "md",
+  variant = "default",
+  as = "div",
+  class: className,
+  ...rest
+} = Astro.props;
+
+const Component = as;
 ---
 
-<div
+<Component
   data-sw-card
-  class={card({ size, class: className })}
+  class={card({ variant, size, class: className })}
   {...rest}
   data-size={size}
   data-slot="card"
 >
   <slot />
-</div>
+</Component>
