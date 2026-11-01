@@ -8,7 +8,8 @@ import react from "@astrojs/react";
 
 import tailwindcss from "@tailwindcss/vite";
 
-import node from "@astrojs/node";
+// import node from "@astrojs/node";
+import vercel from "@astrojs/vercel";
 import { redact } from "@tanstack/redact/vite";
 // https://astro.build/config
 export default defineConfig({
@@ -39,9 +40,7 @@ export default defineConfig({
     defaultStrategy: "hover",
   },
 
-  adapter: node({
-    mode: "standalone",
-  }),
+  adapter: vercel(),
   cache: {
     provider: memoryCache(),
   },
