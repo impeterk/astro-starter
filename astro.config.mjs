@@ -9,14 +9,14 @@ import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 
 import node from "@astrojs/node";
-
+import { redact } from "@tanstack/redact/vite";
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,
 
   fonts: [
     {
-      provider: fontProviders.npm({ remote: false }),
+      provider: fontProviders.npm(),
       name: "Geist Mono Variable",
       cssVariable: "--font-geist-mono",
     },
@@ -30,7 +30,7 @@ export default defineConfig({
 
   vite: {
     resolve: { tsconfigPaths: true },
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss(), redact()],
   },
 
   output: "server",

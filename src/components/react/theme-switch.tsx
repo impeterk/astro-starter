@@ -1,11 +1,12 @@
 import { useState, type JSX } from "react";
 
-import { useMediaQuery } from "@reactuses/core";
+// import { useMediaQuery } from "@reactuses/core";
 import { IconDeviceDesktop, IconMoon, IconSun } from "@tabler/icons-react";
 
 import { cn } from "@/lib/utils";
 import type { Theme } from "@/lib/types";
 import { actions } from "astro:actions";
+import { useMediaQuery } from "@/lib/hooks/use-media-query";
 
 const defFunc = () => null;
 

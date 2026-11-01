@@ -10,10 +10,13 @@ import { SITE_DESCRIPTION } from "@/lib/consts";
 import { IconArrowRight } from "@tabler/icons-react";
 import blogPlaceholder from "@/assets/blog-placeholder-1.jpg";
 import Image from "@/components/starwind/image";
+import { Spotlight } from "@/components/react/spotlight";
 ---
 
 <BaseLayout title="Starter" description={SITE_DESCRIPTION}>
   <section class="space-y-20 mt-12">
+    <Spotlight />
+
     <CardParts.Root variant="ghost">
       <CardParts.Header>
         <div>

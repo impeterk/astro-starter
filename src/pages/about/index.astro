@@ -34,11 +34,11 @@ const links = [
 <BaseLayout title="About">
   <section class="container">
     <Card.Root class="w-full max-w-2xl mx-auto mt-12 pt-0 overflow-clip">
-      <Card.Header class="p-0 bg-secondary-accent dark:bg-sidebar relative max-h-72">
+      <Card.Header class="p-0 bg-secondary-accent dark:bg-sidebar relative max-h-72 overflow-clip">
         <Image
           src={image}
           alt="A bird sitting on a nest of eggs."
-          class="max-h-72 w-fit mx-auto"
+          class="max-w-60 mx-auto relative"
           loading={"eager"}
         />
         <div class="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent"></div>
@@ -66,7 +66,7 @@ const links = [
               </p>
             </Prose>
           </section>
-          <ButtonGroup class="mt-4 gap-2">
+          <ButtonGroup class="mt-4 gap-2 max-sm:flex-col max-sm:items-start">
             {links.map((link) => (
               <Button
                 href={link.href}
@@ -81,7 +81,7 @@ const links = [
           </ButtonGroup>
           <Separator class="mt-4 mb-8" />
           <section>
-            <Prose>
+            <Prose class="text-pretty">
               <Content />
             </Prose>
           </section>
